@@ -23,3 +23,56 @@ fitblueprint/
 ├── README.md # You're here
 
 
+
+## 🏃‍♂️ Example Usage
+
+### Evaluation
+
+```bash
+POST /evaluate
+{
+  "age": 45,
+  "sex": "male",
+  "weight_kg": 80,
+  "chair_stand": 15,
+  "push_up": 18,
+  "step_hr": 125,
+  "walk_time_min": 16.2,
+  "walk_hr": 140
+}
+```
+
+Example response:
+
+```json
+[
+  {"Test Name": "Chair Stand Test", "Score Category": "Good", "Risk Flag": false, "Message": "Great lower-body strength!"},
+  {"Test Name": "Push-Up Test", "Score Category": "Fair", "Risk Flag": true, "Message": "Your upper-body endurance is below average."},
+  {"Test Name": "6-Min Step Test", "Score Category": "Fair", "Risk Flag": true, "Message": "Elevated recovery heart rate; focus on aerobic conditioning."},
+  {"Test Name": "1-Mile Walk Test", "Score Category": "Good", "Risk Flag": false, "Message": "Excellent aerobic capacity!", "VO2max": 42.1}
+]
+```
+
+### Weekly Plan
+
+```bash
+POST /plan
+{
+  "categories": ["Good", "Fair", "Fair", "Good"]
+}
+```
+
+Example response:
+
+```json
+{
+  "Monday": "30-min easy walk + mobility",
+  "Tuesday": "Rest or gentle yoga",
+  "Wednesday": "Bodyweight circuit x1 (squats, push-ups, rows)",
+  "Thursday": "Rest",
+  "Friday": "30-min easy walk",
+  "Saturday": "Light recreational activity",
+  "Sunday": "Rest and stretch"
+}
+```
+
