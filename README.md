@@ -76,3 +76,15 @@ Example response:
 }
 ```
 
+
+### Running the Mobile App
+
+The React Native frontend is located in `app/`. To start it with Expo:
+
+```bash
+cd app
+npm install
+npx expo start
+```
+
+Ensure the FastAPI backend is running at `http://localhost:8000`.
