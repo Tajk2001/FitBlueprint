@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
@@ -6,7 +7,7 @@ export default function DashboardScreen({ route }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {results.map((r, idx) => (
+      {Object.values(results).map((r, idx) => (
         <View key={idx} style={styles.card}>
           <Text style={styles.title}>{r['Test Name']}</Text>
           <Text>Category: {r['Score Category']}</Text>

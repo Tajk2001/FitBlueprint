@@ -25,8 +25,6 @@ def categorize(value: float, thresholds: Dict[str, float]) -> str:
     return "Poor"
 
 # Normative data -------------------------------------------------------------
-# These data are simplified examples drawn from ACSM, CDC, and published norms.
-# In practice, you would use comprehensive tables for each age and sex.
 
 CHAIR_STAND_NORMS = {
     "male": {
@@ -54,7 +52,6 @@ PUSH_UP_NORMS = {
     },
 }
 
-# Heart rate after the step test; lower is better
 STEP_HR_THRESHOLDS = {"Excellent": 90, "Good": 110, "Fair": 130}
 
 VO2MAX_NORMS = {
@@ -77,10 +74,7 @@ def evaluate_chair_stand(reps: int, age: int, sex: str) -> Dict[str, Any]:
     thresholds = CHAIR_STAND_NORMS[sex][age_group]
     category = categorize(reps, thresholds)
     risk = category in {"Fair", "Poor"}
-    message = (
-        "Your lower-body strength is below average." if risk else
-        "Great lower-body strength!"
-    )
+    message = "Your lower-body strength is below average." if risk else "Great lower-body strength!"
     return {
         "Test Name": "Chair Stand Test",
         "Score Category": category,
@@ -94,10 +88,7 @@ def evaluate_push_up(reps: int, age: int, sex: str) -> Dict[str, Any]:
     thresholds = PUSH_UP_NORMS[sex][age_group]
     category = categorize(reps, thresholds)
     risk = category in {"Fair", "Poor"}
-    message = (
-        "Your upper-body endurance is below average." if risk else
-        "Solid upper-body endurance!"
-    )
+    message = "Your upper-body endurance is below average." if risk else "Solid upper-body endurance!"
     return {
         "Test Name": "Push-Up Test",
         "Score Category": category,
@@ -109,10 +100,7 @@ def evaluate_push_up(reps: int, age: int, sex: str) -> Dict[str, Any]:
 def evaluate_step_test(hr: int) -> Dict[str, Any]:
     category = categorize(-hr, {k: -v for k, v in STEP_HR_THRESHOLDS.items()})
     risk = category in {"Fair", "Poor"}
-    message = (
-        "Elevated recovery heart rate; focus on aerobic conditioning." if risk else
-        "Good heart rate recovery!"
-    )
+    message = "Elevated recovery heart rate; focus on aerobic conditioning." if risk else "Good heart rate recovery!"
     return {
         "Test Name": "6-Min Step Test",
         "Score Category": category,
@@ -141,10 +129,7 @@ def evaluate_walk_test(time_min: float, hr: int, age: int, sex: str, weight_kg: 
     thresholds = VO2MAX_NORMS[sex][age_group]
     category = categorize(vo2, thresholds)
     risk = category in {"Fair", "Poor"}
-    message = (
-        "Aerobic capacity is below average." if risk else
-        "Excellent aerobic capacity!"
-    )
+    message = "Aerobic capacity is below average." if risk else "Excellent aerobic capacity!"
     return {
         "Test Name": "1-Mile Walk Test",
         "Score Category": category,
@@ -155,7 +140,6 @@ def evaluate_walk_test(time_min: float, hr: int, age: int, sex: str, weight_kg: 
 
 
 def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
-    """Evaluate all fitness tests and return results plus a weekly plan."""
     age = data["age"]
     sex = data["sex"]
     weight_kg = data.get("weight_kg", 70)
@@ -164,13 +148,7 @@ def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
         evaluate_chair_stand(data["chair_stand"], age, sex),
         evaluate_push_up(data["push_up"], age, sex),
         evaluate_step_test(data["step_hr"]),
-        evaluate_walk_test(
-            data["walk_time_min"],
-            data["walk_hr"],
-            age,
-            sex,
-            weight_kg,
-        ),
+        evaluate_walk_test(data["walk_time_min"], data["walk_hr"], age, sex, weight_kg),
     ]
 
     tests_dict = {res["Test Name"]: res for res in results}
@@ -213,7 +191,6 @@ EXCELLENT_PLAN = {
 
 
 def generate_weekly_plan(categories: List[str]) -> Dict[str, str]:
-    """Generate a plan based on worst category."""
     order = ["Poor", "Fair", "Good", "Excellent"]
     worst = min(categories, key=lambda c: order.index(c))
     if worst in {"Poor", "Fair"}:

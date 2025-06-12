@@ -1,3 +1,4 @@
+
 # 🧠 FitBlueprint
 
 FitBlueprint is a personalized fitness and health app that helps users assess their metabolic and physical fitness using at-home movement tests. It compares results against science-backed norms by age and sex, flags risk areas, and generates a weekly plan to improve health and performance.
@@ -10,6 +11,7 @@ FitBlueprint is a personalized fitness and health app that helps users assess th
 - 🧪 Science-based scoring and risk flagging
 - 📊 Personalized weekly training plan generator
 - 📱 Mobile-first React Native frontend
+- 💻 Web frontend using React.js + Tailwind CSS
 - ⚙️ FastAPI backend with clean API endpoints
 
 ---
@@ -19,6 +21,7 @@ FitBlueprint is a personalized fitness and health app that helps users assess th
 ```
 fitblueprint/
 ├── app/             # React Native frontend (onboarding, test inputs, dashboard)
+├── web/             # React.js web frontend
 ├── backend/         # FastAPI backend (main.py, evaluation logic)
 ├── .env             # Environment variables
 ├── setup.sh         # Project setup script
@@ -88,8 +91,6 @@ Example response:
 }
 ```
 
----
-
 ### Weekly Plan
 
 ```bash
@@ -124,6 +125,22 @@ cd app
 npm install
 npx expo start
 ```
+
+## 💻 Running the Web App
+
+The React web frontend is located in `web/` and uses Vite with Tailwind CSS.
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Navigate to `http://localhost:5173` in your browser and ensure the FastAPI backend is running at `http://localhost:8000`.
+
+---
+
+## 🔧 Backend
 
 Make sure the FastAPI backend is running at:
 
