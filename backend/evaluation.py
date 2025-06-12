@@ -155,6 +155,7 @@ def evaluate_walk_test(time_min: float, hr: int, age: int, sex: str, weight_kg: 
 
 
 def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Evaluate all fitness tests and return results plus a weekly plan."""
     age = data["age"]
     sex = data["sex"]
     weight_kg = data.get("weight_kg", 70)
@@ -172,14 +173,10 @@ def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
         ),
     ]
 
-    categories = [r["Score Category"] for r in results]
-    plan = generate_weekly_plan(categories)
-
-    return {
-        "tests": {r["Test Name"]: r for r in results},
-        "weekly_plan": plan,
-    }
-
+    tests_dict = {res["Test Name"]: res for res in results}
+    categories = [res["Score Category"] for res in results]
+    weekly_plan = generate_weekly_plan(categories)
+    return {"tests": tests_dict, "weekly_plan": weekly_plan}
 
 
 # Weekly plan generation -----------------------------------------------------
@@ -224,4 +221,3 @@ def generate_weekly_plan(categories: List[str]) -> Dict[str, str]:
     if worst == "Good":
         return GOOD_PLAN
     return EXCELLENT_PLAN
-

@@ -1,10 +1,11 @@
+
 """FastAPI application for FitBlueprint."""
 
 from typing import List, Dict, Any
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-import evaluation
+from . import evaluation
 
 app = FastAPI(title="FitBlueprint API")
 
@@ -28,15 +29,13 @@ class PlanRequest(BaseModel):
 # Endpoints ------------------------------------------------------------------
 
 @app.post("/evaluate")
-def evaluate(req: EvalRequest) -> List[Dict[str, Any]]:
-    """Evaluate all fitness tests."""
-    data = req.dict()
-    return evaluation.evaluate_all_tests(data)
+def evaluate(req: EvalRequest) -> Dict[str, Any]:
+    """Evaluate all fitness tests and provide a weekly plan."""
+    return evaluation.evaluate_all_tests(req.dict())
 
 
 @app.post("/plan")
 def plan(req: PlanRequest) -> Dict[str, str]:
     """Return a weekly training plan."""
     return evaluation.generate_weekly_plan(req.categories)
-
 
