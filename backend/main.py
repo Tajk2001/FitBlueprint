@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from . import evaluation
+import evaluation
 
 app = FastAPI(title="FitBlueprint API")
 
