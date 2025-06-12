@@ -221,4 +221,3 @@ def generate_weekly_plan(categories: List[str]) -> Dict[str, str]:
     if worst == "Good":
         return GOOD_PLAN
     return EXCELLENT_PLAN
-

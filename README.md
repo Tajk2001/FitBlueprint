@@ -15,14 +15,17 @@ FitBlueprint is a personalized fitness and health app that helps users assess th
 ---
 
 ## 📁 Project Structure
+
+```
 fitblueprint/
-├── app/ # React Native frontend (onboarding, test inputs, dashboard)
-├── backend/ # FastAPI backend (main.py, evaluation logic)
-├── .env # Environment variables
-├── setup.sh # Project setup script
-├── README.md # You're here
+├── app/             # React Native frontend (onboarding, test inputs, dashboard)
+├── backend/         # FastAPI backend (main.py, evaluation logic)
+├── .env             # Environment variables
+├── setup.sh         # Project setup script
+├── README.md        # You're here
+```
 
-
+---
 
 ## 🏃‍♂️ Example Usage
 
@@ -85,6 +88,8 @@ Example response:
 }
 ```
 
+---
+
 ### Weekly Plan
 
 ```bash
@@ -108,8 +113,9 @@ Example response:
 }
 ```
 
+---
 
-### Running the Mobile App
+## 📱 Running the Mobile App
 
 The React Native frontend is located in `app/`. To start it with Expo:
 
@@ -119,4 +125,8 @@ npm install
 npx expo start
 ```
 
-Ensure the FastAPI backend is running at `http://localhost:8000`.
+Make sure the FastAPI backend is running at:
+
+```
+http://localhost:8000
+```
