@@ -37,5 +37,3 @@ def evaluate(req: EvalRequest) -> Dict[str, Any]:
 def plan(req: PlanRequest) -> Dict[str, str]:
     """Return a weekly training plan."""
     return evaluation.generate_weekly_plan(req.categories)
-
-

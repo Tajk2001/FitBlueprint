@@ -1,3 +1,4 @@
+
 # 🧠 FitBlueprint
 
 FitBlueprint is a personalized fitness and health app that helps users assess their metabolic and physical fitness using at-home movement tests. It compares results against science-backed norms by age and sex, flags risk areas, and generates a weekly plan to improve health and performance.
@@ -10,20 +11,24 @@ FitBlueprint is a personalized fitness and health app that helps users assess th
 - 🧪 Science-based scoring and risk flagging
 - 📊 Personalized weekly training plan generator
 - 📱 Mobile-first React Native frontend
+- 💻 Web frontend using React.js + Tailwind CSS
 - ⚙️ FastAPI backend with clean API endpoints
 
 ---
 
 ## 📁 Project Structure
+
+```
 fitblueprint/
-├── app/ # React Native frontend (onboarding, test inputs, dashboard)
-├── web/ # React.js web frontend
-├── backend/ # FastAPI backend (main.py, evaluation logic)
-├── .env # Environment variables
-├── setup.sh # Project setup script
-├── README.md # You're here
+├── app/             # React Native frontend (onboarding, test inputs, dashboard)
+├── web/             # React.js web frontend
+├── backend/         # FastAPI backend (main.py, evaluation logic)
+├── .env             # Environment variables
+├── setup.sh         # Project setup script
+├── README.md        # You're here
+```
 
-
+---
 
 ## 🏃‍♂️ Example Usage
 
@@ -109,8 +114,9 @@ Example response:
 }
 ```
 
+---
 
-### Running the Mobile App
+## 📱 Running the Mobile App
 
 The React Native frontend is located in `app/`. To start it with Expo:
 
@@ -120,16 +126,24 @@ npm install
 npx expo start
 ```
 
-Ensure the FastAPI backend is running at `http://localhost:8000`.
-
-### Running the Web App
+## 💻 Running the Web App
 
 The React web frontend is located in `web/` and uses Vite with Tailwind CSS.
 
 ```bash
 cd web
 npm install
-npm run start
+npm run dev
 ```
 
 Navigate to `http://localhost:5173` in your browser and ensure the FastAPI backend is running at `http://localhost:8000`.
+
+---
+
+## 🔧 Backend
+
+Make sure the FastAPI backend is running at:
+
+```
+http://localhost:8000
+```

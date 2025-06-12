@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { BACKEND_URL } from '../config';
@@ -28,10 +29,19 @@ export default function TestInputScreen({ navigation, route }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      const data = await evalRes.json();
+      const evalData = await evalRes.json();
+
+      const categories = Object.values(evalData.tests).map(r => r['Score Category']);
+      const planRes = await fetch(`${BACKEND_URL}/plan`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ categories }),
+      });
+      const planData = await planRes.json();
+
       navigation.navigate('Dashboard', {
-        results: data.tests,
-        plan: data.weekly_plan,
+        results: evalData.tests,
+        plan: planData,
       });
     } catch (err) {
       Alert.alert('Error', 'Failed to contact server');
