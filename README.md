@@ -45,12 +45,44 @@ POST /evaluate
 Example response:
 
 ```json
-[
-  {"Test Name": "Chair Stand Test", "Score Category": "Good", "Risk Flag": false, "Message": "Great lower-body strength!"},
-  {"Test Name": "Push-Up Test", "Score Category": "Fair", "Risk Flag": true, "Message": "Your upper-body endurance is below average."},
-  {"Test Name": "6-Min Step Test", "Score Category": "Fair", "Risk Flag": true, "Message": "Elevated recovery heart rate; focus on aerobic conditioning."},
-  {"Test Name": "1-Mile Walk Test", "Score Category": "Good", "Risk Flag": false, "Message": "Excellent aerobic capacity!", "VO2max": 42.1}
-]
+{
+  "tests": {
+    "Chair Stand Test": {
+      "Test Name": "Chair Stand Test",
+      "Score Category": "Good",
+      "Risk Flag": false,
+      "Message": "Great lower-body strength!"
+    },
+    "Push-Up Test": {
+      "Test Name": "Push-Up Test",
+      "Score Category": "Fair",
+      "Risk Flag": true,
+      "Message": "Your upper-body endurance is below average."
+    },
+    "6-Min Step Test": {
+      "Test Name": "6-Min Step Test",
+      "Score Category": "Fair",
+      "Risk Flag": true,
+      "Message": "Elevated recovery heart rate; focus on aerobic conditioning."
+    },
+    "1-Mile Walk Test": {
+      "Test Name": "1-Mile Walk Test",
+      "Score Category": "Good",
+      "Risk Flag": false,
+      "Message": "Excellent aerobic capacity!",
+      "VO2max": 42.1
+    }
+  },
+  "weekly_plan": {
+    "Monday": "30-min easy walk + mobility",
+    "Tuesday": "Rest or gentle yoga",
+    "Wednesday": "Bodyweight circuit x1 (squats, push-ups, rows)",
+    "Thursday": "Rest",
+    "Friday": "30-min easy walk",
+    "Saturday": "Light recreational activity",
+    "Sunday": "Rest and stretch"
+  }
+}
 ```
 
 ### Weekly Plan

@@ -30,12 +30,7 @@ class PlanRequest(BaseModel):
 @app.post("/evaluate")
 def evaluate(req: EvalRequest) -> Dict[str, Any]:
     """Evaluate all fitness tests and provide a weekly plan."""
-    data = req.dict()
-    test_results = evaluation.evaluate_all_tests(data)
-    categories = [result["Score Category"] for result in test_results]
-    weekly_plan = evaluation.generate_weekly_plan(categories)
-    tests_dict = {res["Test Name"]: res for res in test_results}
-    return {"tests": tests_dict, "weekly_plan": weekly_plan}
+    return evaluation.evaluate_all_tests(req.dict())
 
 
 @app.post("/plan")
