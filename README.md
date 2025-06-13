@@ -110,6 +110,15 @@ Example response:
 ```
 
 
+### Running the Backend
+
+Install dependencies and launch the FastAPI server:
+
+```bash
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload
+```
+
 ### Running the Mobile App
 
 The React Native frontend is located in `app/`. To start it with Expo:
@@ -129,7 +138,7 @@ The React web frontend is located in `web/` and uses Vite with Tailwind CSS.
 ```bash
 cd web
 npm install
-npm run start
+npm run dev
 ```
 
 Navigate to `http://localhost:5173` in your browser and ensure the FastAPI backend is running at `http://localhost:8000`.
