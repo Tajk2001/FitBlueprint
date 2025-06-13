@@ -1,4 +1,3 @@
-
 # 🧠 FitBlueprint
 
 FitBlueprint is a personalized fitness and health app that helps users assess their metabolic and physical fitness using at-home movement tests. It compares results against science-backed norms by age and sex, flags risk areas, and generates a weekly plan to improve health and performance.
@@ -126,6 +125,10 @@ npm install
 npx expo start
 ```
 
+Ensure the FastAPI backend is running at `http://localhost:8000`.
+
+---
+
 ## 💻 Running the Web App
 
 The React web frontend is located in `web/` and uses Vite with Tailwind CSS.
@@ -136,11 +139,18 @@ npm install
 npm run dev
 ```
 
-Navigate to `http://localhost:5173` in your browser and ensure the FastAPI backend is running at `http://localhost:8000`.
+Navigate to `http://localhost:5173` in your browser.
 
 ---
 
-## 🔧 Backend
+## 🔧 Running the Backend
+
+Install dependencies and launch the FastAPI server:
+
+```bash
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload
+```
 
 Make sure the FastAPI backend is running at:
 

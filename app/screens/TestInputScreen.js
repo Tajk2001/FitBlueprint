@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { BACKEND_URL } from '../config';
@@ -29,6 +28,7 @@ export default function TestInputScreen({ navigation, route }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
+
       const evalData = await evalRes.json();
 
       const categories = Object.values(evalData.tests).map(r => r['Score Category']);

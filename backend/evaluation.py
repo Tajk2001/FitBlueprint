@@ -1,5 +1,4 @@
-"""Evaluation logic for FitBlueprint.
-"""
+"""Evaluation logic for FitBlueprint."""
 
 from typing import Dict, Any, List
 
@@ -25,6 +24,9 @@ def categorize(value: float, thresholds: Dict[str, float]) -> str:
     return "Poor"
 
 # Normative data -------------------------------------------------------------
+
+# These data are simplified examples drawn from ACSM, CDC, and published norms.
+# In practice, you would use comprehensive tables for each age and sex.
 
 CHAIR_STAND_NORMS = {
     "male": {
@@ -52,6 +54,7 @@ PUSH_UP_NORMS = {
     },
 }
 
+# Heart rate after the step test; lower is better
 STEP_HR_THRESHOLDS = {"Excellent": 90, "Good": 110, "Fair": 130}
 
 VO2MAX_NORMS = {
@@ -140,6 +143,7 @@ def evaluate_walk_test(time_min: float, hr: int, age: int, sex: str, weight_kg: 
 
 
 def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Evaluate all fitness tests and return results plus a weekly plan."""
     age = data["age"]
     sex = data["sex"]
     weight_kg = data.get("weight_kg", 70)
@@ -155,7 +159,6 @@ def evaluate_all_tests(data: Dict[str, Any]) -> Dict[str, Any]:
     categories = [res["Score Category"] for res in results]
     weekly_plan = generate_weekly_plan(categories)
     return {"tests": tests_dict, "weekly_plan": weekly_plan}
-
 
 # Weekly plan generation -----------------------------------------------------
 
@@ -189,8 +192,8 @@ EXCELLENT_PLAN = {
     "Sunday": "Active recovery",
 }
 
-
 def generate_weekly_plan(categories: List[str]) -> Dict[str, str]:
+    """Generate a plan based on worst category."""
     order = ["Poor", "Fair", "Good", "Excellent"]
     worst = min(categories, key=lambda c: order.index(c))
     if worst in {"Poor", "Fair"}:

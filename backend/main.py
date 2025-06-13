@@ -2,11 +2,20 @@
 
 from typing import List, Dict, Any
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from . import evaluation
 
 app = FastAPI(title="FitBlueprint API")
+
+# Enable CORS for local development
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Request schemas ------------------------------------------------------------
 
